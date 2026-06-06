@@ -1,0 +1,65 @@
+@media screen and (min-width: 640px) {
+  .card-total .paragraph,
+  .card-fav .paragraph,
+  .card-emergency .paragraph {
+    font-size: 14px;
+  }
+  .users,
+  .star,
+  .heart {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+@media screen and (min-width: 916px) {
+  .emergecy-call,
+  .fav-inner .phone-action {
+    width: 36px;
+    height: 36px;
+  }
+  .card-total .paragraph,
+  .card-fav .paragraph,
+  .card-emergency .paragraph {
+    font-size: 16px;
+  }
+  .count {
+    font-size: 24px;
+  }
+  .sidebar .header {
+    font-size: 18px;
+  }
+  .sidebar .description {
+    font-size: 12px;
+  }
+  .name {
+    font-size: 14px;
+  }
+  .phone {
+    font-size: 12px;
+  }
+  .inner {
+    background-color: #fbf9fa;
+    border: none;
+  }
+  .fav-inner .phone-action,
+  .emergecy-inner .emergecy-call {
+    transition:
+      color 300ms,
+      background-color 300ms;
+  }
+  .fav-inner:hover .phone-action {
+    color: white;
+    background-color: #009966;
+  }
+
+  .emergecy-inner:hover .emergecy-call {
+    color: white;
+    background-color: #ec003f;
+  }
+  .sidebar {
+    position: sticky;
+    top: 100px;
+    min-height: calc(100vh - 120px);
+  }
+}

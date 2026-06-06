@@ -1,0 +1,805 @@
+<!doctype html>
+<html lang="en modal fade show">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ContactHub</title>
+    <!-- ^ ### Font From Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- ^ ### FontAwsome -->
+    <link rel="stylesheet" href="./css/all.min.css" />
+    <!-- ^ ### Css File { bootstrap } -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <!-- ^ ### Main StyleSheet -->
+    <link rel="stylesheet" href="./css/style.css" />
+    <!-- ^ ### Media Query -->
+    <link rel="stylesheet" href="./css/media.css" />
+  </head>
+  <body>
+    <nav class="fixed-top bg-white">
+      <div
+        class="container d-flex align-items-center justify-content-between p-3"
+      >
+        <div class="d-flex align-items-center gap-3">
+          <div>
+            <i
+              class="text-white rounded-4 d-flex justify-content-center align-items-center fa-solid fa-address-book"
+            ></i>
+          </div>
+          <div>
+            <h1 class="m-0 fs-24 fw-bold">
+              Contact<span class="color-v">Hub</span>
+            </h1>
+            <p class="m-0 d-none d-md-block color-g fs-12 fw-semibold">
+              Smart Contact Manager
+            </p>
+          </div>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            class="add rounded-4 btn d-flex align-items-center text-white fw-semibold gap-1"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            <i class="fa-solid fa-plus"></i> Add
+            <span class="d-none d-md-block"> Contact</span>
+          </button>
+          <i class="color-g d-none d-md-block fa-solid fa-bell"></i>
+          <i class="color-g d-none d-md-block fa-solid fa-gear"></i>
+          <img class="rounded-3" src="./images/avatar-4.jpg" alt="user" />
+        </div>
+      </div>
+    </nav>
+
+    <main class="main-content py-4 px-3">
+      <div class="container">
+        <div class="row row-1 mb-4 g-3">
+          <div class="col-6 col-md-4">
+            <div
+              class="card-total m-0 p-3 rounded-4 bg-white d-flex align-items-center gap-2"
+            >
+              <div
+                class="users rounded-3 d-flex align-items-center justify-content-center"
+              >
+                <i class="fa-solid fa-users text-white"></i>
+              </div>
+              <div>
+                <p
+                  class="m-0 text-uppercase color-g fw-semibold fs-11 paragraph"
+                >
+                  total
+                </p>
+                <p id="totalCount" class="m-0 fw-bold fs-20 count">0</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4">
+            <div
+              class="card-fav m-0 p-3 rounded-4 bg-white d-flex align-items-center gap-2"
+            >
+              <div
+                class="star rounded-3 d-flex align-items-center justify-content-center"
+              >
+                <i class="fa-solid fa-star text-white"></i>
+              </div>
+              <div>
+                <p
+                  class="m-0 text-uppercase color-g fw-semibold fs-11 paragraph"
+                >
+                  Favorites
+                </p>
+                <p id="favCount" class="m-0 fw-bold fs-20 count">0</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4">
+            <div
+              class="card-emergency m-0 p-3 rounded-4 bg-white d-flex align-items-center gap-2"
+            >
+              <div
+                class="heart rounded-3 d-flex align-items-center justify-content-center"
+              >
+                <i class="fa-solid fa-heart-pulse text-white"></i>
+              </div>
+              <div>
+                <p
+                  class="m-0 text-uppercase color-g fw-semibold fs-11 paragraph"
+                >
+                  Emergency
+                </p>
+                <p id="emergencyCount" class="m-0 fw-bold fs-20 count">0</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row g-4">
+          <div class="col-12 col-lg-8">
+            <div class="mb-4">
+              <h2 class="fs-30 fw-bold m-0">All Contacts</h2>
+              <p class="fs-14 mt-1 color-g fw-medium">
+                Manage and organize your <span id="total">0</span> contacts
+              </p>
+              <form>
+                <div class="position-relative">
+                  <i class="position-absolute fa-solid fa-magnifying-glass"></i>
+                  <input
+                    type="search"
+                    class="form-control search bg-white"
+                    placeholder="search by name, phone or email...."
+                    id="contactSearch"
+                    oninput="searchContact()"
+                  />
+                </div>
+              </form>
+            </div>
+            <div
+              id="contactEmptyMessage"
+              class="text-center py-5 text-secondary"
+            >
+              <div class="color-g fw-medium">No contacts found</div>
+              <div class="fs-14 click mt-1">
+                Click "Add Contact" to get started
+              </div>
+            </div>
+            <div class="row g-4" id="contactContainer">
+              <!-- <div class="col-12 col-md-6">
+                <div class="contact-card rounded-4 bg-white overflow-hidden">
+                  <div class="card-header">
+                    <div class="d-flex align-items-center gap-3">
+                      <div
+                        class="letters rounded-3 fw-semibold text-white position-relative d-flex align-items-center justify-content-center rounded-3"
+                      >
+                        MS
+                        <div
+                          class="favorite rounded-circle position-absolute d-flex align-items-center justify-content-center"
+                        >
+                          <i class="text-white fs-11 fa-solid fa-star"></i>
+                        </div>
+                        <div
+                          class="heart-pulse rounded-circle position-absolute d-flex align-items-center justify-content-center"
+                        >
+                          <i
+                            class="text-white fs-11 fa-solid fa-heart-pulse"
+                          ></i>
+                        </div>
+                      </div>
+                      <div class="mt-1">
+                        <h3 class="m-0 fs-16 fw-bold">Marina Samy</h3>
+                        <div
+                          class="m-0 color-g fs-12 fw-medium fs-14 color-g d-flex align-items-center gap-2"
+                        >
+                          <div
+                            class="phone rounded-3 d-flex align-items-center justify-content-center mt-1"
+                          >
+                            <i class="fa-solid fa-phone"></i>
+                          </div>
+                          01206598218
+                        </div>
+                      </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-2 mt-2">
+                      <div
+                        class="email rounded-3 d-flex align-items-center justify-content-center mt-1"
+                      >
+                        <i class="fa-solid fa-envelope"></i>
+                      </div>
+                      <p class="fs-14 m-0">marina.samyxp@gmail.com</p>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-2 mt-2">
+                      <div
+                        class="location rounded-3 d-flex align-items-center justify-content-center mt-1"
+                      >
+                        <i class="fa-solid fa-location-dot"></i>
+                      </div>
+                      <p class="fs-14 m-0">El Minya</p>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-2 mt-2">
+                      <span
+                        class="badge rounded-3 fw-medium fs-11 py-1 px-2 fw-semibold"
+                        >Family</span
+                      >
+                      <span
+                        class="Emergency rounded-3 rounded-3 fs-11 fw-medium py-1 px-2 fw-semibold"
+                        >Emergency</span
+                      >
+                    </div>
+                  </div>
+                  <div
+                    class="card-actions px-3 d-flex align-items-center justify-content-between overflow-hidden"
+                  >
+                    <div class="right d-flex align-items-center gap-3">
+                      <div class="phone-action rounded-3 action">
+                        <a>
+                          <i class="fa-solid fa-phone"></i>
+                        </a>
+                      </div>
+                      <button class="envelope-action rounded-3 action">
+                        <i class="fa-solid fa-envelope"></i>
+                      </button>
+                    </div>
+                    <div class="left d-flex align-items-center gap-3">
+                      <button class="star-action rounded-3 action">
+                        <i class="text-warning fs-16 fa-solid fa-star"></i>
+                      </button>
+                      <button class="heart-action rounded-3 action">
+                        <i class="fa-regular fa-heart"></i>
+                      </button>
+                      <button class="edit-action rounded-3 action">
+                        <i class="fa-solid fa-pen"></i>
+                      </button>
+                      <button class="delete-action rounded-3 action">
+                        <i class="fa-solid fa-trash"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+              <!-- <div class="col-12 col-md-6">
+                <div class="contact-card rounded-4 bg-white overflow-hidden">
+                  <div class="card-header">
+                    <div class="d-flex align-items-center gap-3">
+                      <div
+                        class="letters rounded-3 fw-semibold text-white position-relative d-flex align-items-center justify-content-center rounded-3"
+                      >
+                        MS
+                        <div
+                          class="favorite rounded-circle position-absolute d-flex align-items-center justify-content-center"
+                        >
+                          <i class="text-white fs-11 fa-solid fa-star"></i>
+                        </div>
+                        <div
+                          class="heart-pulse rounded-circle position-absolute d-flex align-items-center justify-content-center"
+                        >
+                          <i
+                            class="text-white fs-11 fa-solid fa-heart-pulse"
+                          ></i>
+                        </div>
+                      </div>
+                      <div class="mt-1">
+                        <h3 class="m-0 fs-16 fw-bold">Marina Samy</h3>
+                        <div
+                          class="m-0 color-g fs-12 fw-medium fs-14 color-g d-flex align-items-center gap-2"
+                        >
+                          <div
+                            class="phone rounded-3 d-flex align-items-center justify-content-center mt-1"
+                          >
+                            <i class="fa-solid fa-phone"></i>
+                          </div>
+                          01206598218
+                        </div>
+                      </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-2 mt-2">
+                      <div
+                        class="email rounded-3 d-flex align-items-center justify-content-center mt-1"
+                      >
+                        <i class="fa-solid fa-envelope"></i>
+                      </div>
+                      <p class="fs-14 m-0">marina.samyxp@gmail.com</p>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-2 mt-2">
+                      <div
+                        class="location rounded-3 d-flex align-items-center justify-content-center mt-1"
+                      >
+                        <i class="fa-solid fa-location-dot"></i>
+                      </div>
+                      <p class="fs-14 m-0">El Minya</p>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-2 mt-2">
+                      <span
+                        class="badge rounded-3 fw-medium fs-11 py-1 px-2 fw-semibold"
+                        >Family</span
+                      >
+                      <span
+                        class="Emergency rounded-3 rounded-3 fs-11 fw-medium py-1 px-2 fw-semibold"
+                        >Emergency</span
+                      >
+                    </div>
+                  </div>
+                  <div
+                    class="card-actions px-3 d-flex align-items-center justify-content-between overflow-hidden"
+                  >
+                    <div class="right d-flex align-items-center gap-3">
+                      <div class="phone-action rounded-3 action">
+                        <a>
+                          <i class="fa-solid fa-phone"></i>
+                        </a>
+                      </div>
+                      <button class="envelope-action rounded-3 action">
+                        <i class="fa-solid fa-envelope"></i>
+                      </button>
+                    </div>
+                    <div class="left d-flex align-items-center gap-3">
+                      <button class="star-action rounded-3 action">
+                        <i class="text-warning fs-16 fa-solid fa-star"></i>
+                      </button>
+                      <button class="heart-action rounded-3 action">
+                        <i class="fa-regular fa-heart"></i>
+                      </button>
+                      <button class="edit-action rounded-3 action">
+                        <i class="fa-solid fa-pen"></i>
+                      </button>
+                      <button class="delete-action rounded-3 action">
+                        <i class="fa-solid fa-trash"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="contact-card rounded-4 bg-white overflow-hidden">
+                  <div class="card-header">
+                    <div class="d-flex align-items-center gap-3">
+                      <div
+                        class="letters rounded-3 fw-semibold text-white position-relative d-flex align-items-center justify-content-center rounded-3"
+                      >
+                        MS
+                        <div
+                          class="favorite rounded-circle position-absolute d-flex align-items-center justify-content-center"
+                        >
+                          <i class="text-white fs-11 fa-solid fa-star"></i>
+                        </div>
+                        <div
+                          class="heart-pulse rounded-circle position-absolute d-flex align-items-center justify-content-center"
+                        >
+                          <i
+                            class="text-white fs-11 fa-solid fa-heart-pulse"
+                          ></i>
+                        </div>
+                      </div>
+                      <div class="mt-1">
+                        <h3 class="m-0 fs-16 fw-bold">Marina Samy</h3>
+                        <div
+                          class="m-0 color-g fs-12 fw-medium fs-14 color-g d-flex align-items-center gap-2"
+                        >
+                          <div
+                            class="phone rounded-3 d-flex align-items-center justify-content-center mt-1"
+                          >
+                            <i class="fa-solid fa-phone"></i>
+                          </div>
+                          01206598218
+                        </div>
+                      </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-2 mt-2">
+                      <div
+                        class="email rounded-3 d-flex align-items-center justify-content-center mt-1"
+                      >
+                        <i class="fa-solid fa-envelope"></i>
+                      </div>
+                      <p class="fs-14 m-0">marina.samyxp@gmail.com</p>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-2 mt-2">
+                      <div
+                        class="location rounded-3 d-flex align-items-center justify-content-center mt-1"
+                      >
+                        <i class="fa-solid fa-location-dot"></i>
+                      </div>
+                      <p class="fs-14 m-0">El Minya</p>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-2 mt-2">
+                      <span
+                        class="badge rounded-3 fw-medium fs-11 py-1 px-2 fw-semibold"
+                        >Family</span
+                      >
+                      <span
+                        class="Emergency rounded-3 rounded-3 fs-11 fw-medium py-1 px-2 fw-semibold"
+                        >Emergency</span
+                      >
+                    </div>
+                  </div>
+                  <div
+                    class="card-actions px-3 d-flex align-items-center justify-content-between overflow-hidden"
+                  >
+                    <div class="right d-flex align-items-center gap-3">
+                      <div class="phone-action rounded-3 action">
+                        <a>
+                          <i class="fa-solid fa-phone"></i>
+                        </a>
+                      </div>
+                      <button class="envelope-action rounded-3 action">
+                        <i class="fa-solid fa-envelope"></i>
+                      </button>
+                    </div>
+                    <div class="left d-flex align-items-center gap-3">
+                      <button class="star-action rounded-3 action">
+                        <i class="text-warning fs-16 fa-solid fa-star"></i>
+                      </button>
+                      <button class="heart-action rounded-3 action">
+                        <i class="fa-regular fa-heart"></i>
+                      </button>
+                      <button class="edit-action rounded-3 action">
+                        <i class="fa-solid fa-pen"></i>
+                      </button>
+                      <button class="delete-action rounded-3 action">
+                        <i class="fa-solid fa-trash"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="contact-card rounded-4 bg-white overflow-hidden">
+                  <div class="card-header">
+                    <div class="d-flex align-items-center gap-3">
+                      <div
+                        class="letters rounded-3 fw-semibold text-white position-relative d-flex align-items-center justify-content-center rounded-3"
+                      >
+                        MS
+                        <div
+                          class="favorite rounded-circle position-absolute d-flex align-items-center justify-content-center"
+                        >
+                          <i class="text-white fs-11 fa-solid fa-star"></i>
+                        </div>
+                        <div
+                          class="heart-pulse rounded-circle position-absolute d-flex align-items-center justify-content-center"
+                        >
+                          <i
+                            class="text-white fs-11 fa-solid fa-heart-pulse"
+                          ></i>
+                        </div>
+                      </div>
+                      <div class="mt-1">
+                        <h3 class="m-0 fs-16 fw-bold">Marina Samy</h3>
+                        <div
+                          class="m-0 color-g fs-12 fw-medium fs-14 color-g d-flex align-items-center gap-2"
+                        >
+                          <div
+                            class="phone rounded-3 d-flex align-items-center justify-content-center mt-1"
+                          >
+                            <i class="fa-solid fa-phone"></i>
+                          </div>
+                          01206598218
+                        </div>
+                      </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-2 mt-2">
+                      <div
+                        class="email rounded-3 d-flex align-items-center justify-content-center mt-1"
+                      >
+                        <i class="fa-solid fa-envelope"></i>
+                      </div>
+                      <p class="fs-14 m-0">marina.samyxp@gmail.com</p>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-2 mt-2">
+                      <div
+                        class="location rounded-3 d-flex align-items-center justify-content-center mt-1"
+                      >
+                        <i class="fa-solid fa-location-dot"></i>
+                      </div>
+                      <p class="fs-14 m-0">El Minya</p>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-2 mt-2">
+                      <span
+                        class="badge rounded-3 fw-medium fs-11 py-1 px-2 fw-semibold"
+                        >Family</span
+                      >
+                      <span
+                        class="Emergency rounded-3 rounded-3 fs-11 fw-medium py-1 px-2 fw-semibold"
+                        >Emergency</span
+                      >
+                    </div>
+                  </div>
+                  <div
+                    class="card-actions px-3 d-flex align-items-center justify-content-between overflow-hidden"
+                  >
+                    <div class="right d-flex align-items-center gap-3">
+                      <div class="phone-action rounded-3 action">
+                        <a>
+                          <i class="fa-solid fa-phone"></i>
+                        </a>
+                      </div>
+                      <button class="envelope-action rounded-3 action">
+                        <i class="fa-solid fa-envelope"></i>
+                      </button>
+                    </div>
+                    <div class="left d-flex align-items-center gap-3">
+                      <button class="star-action rounded-3 action">
+                        <i class="text-warning fs-16 fa-solid fa-star"></i>
+                      </button>
+                      <button class="heart-action rounded-3 action">
+                        <i class="fa-regular fa-heart"></i>
+                      </button>
+                      <button class="edit-action rounded-3 action">
+                        <i class="fa-solid fa-pen"></i>
+                      </button>
+                      <button class="delete-action rounded-3 action">
+                        <i class="fa-solid fa-trash"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+          </div>
+          <div class="col-12 col-lg-4">
+            <div class="sidebar">
+              <div class="favorites-mobile rounded-4 bg-white overflow-hidden">
+                <div class="fav px-3 d-flex align-items-center gap-3">
+                  <div
+                    class="star rounded-3 d-flex align-items-center justify-content-center"
+                  >
+                    <i class="fa-solid fa-star text-white"></i>
+                  </div>
+                  <div>
+                    <h3 class="m-0 fs-14 fw-bold header">Favorites</h3>
+                    <p class="m-0 color-g fs-11 fw-medium description">
+                      Quick access
+                    </p>
+                  </div>
+                </div>
+                <div class="fav-number rounded-3">
+                  <div
+                    id="favEmptyMessage"
+                    class="text-center py-5 text-secondary"
+                  >
+                    No favorites yet
+                  </div>
+                  <div id="favNumber" class="w-100 row g-3 number">
+                    <!-- <div class="col-12 col-md-6 col-lg-12">
+                      <div
+                    class="inner rounded-3 d-flex align-items-center justify-content-between"
+                  >
+                    <a class="p-2 d-flex gap-3 align-items-center">
+                      <div
+                        class="letters rounded-3 fw-semibold text-white position-relative d-flex align-items-center justify-content-center rounded-3"
+                      >
+                        MS
+                      </div>
+                      <div class="mt-1">
+                        <h3 class="m-0 fs-16 fw-bold">Marina Samy</h3>
+                        <div
+                          class="m-0 color-g fs-12 fw-medium fs-14 color-g d-flex align-items-center gap-2"
+                        >
+                          <div
+                            class="phone rounded-3 d-flex align-items-center justify-content-center mt-1"
+                          ></div>
+                          01206598218
+                        </div>
+                      </div>
+                    </a>
+                    <div class="phone-action rounded-3 action">
+                      <a>
+                        <i class="fa-solid fa-phone"></i>
+                      </a>
+                    </div>
+                  </div>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+              <div class="emergency-mobile rounded-4 bg-white overflow-hidden">
+                <div class="emergecy-m px-3 d-flex align-items-center gap-3">
+                  <div
+                    class="heart rounded-3 d-flex align-items-center justify-content-center"
+                  >
+                    <i class="fa-solid fa-heart-pulse text-white"></i>
+                  </div>
+                  <div>
+                    <h3 class="m-0 fs-14 fw-bold header">Emergency</h3>
+                    <p class="m-0 color-g fs-11 fw-medium description">
+                      Important contacts for urgent calls
+                    </p>
+                  </div>
+                </div>
+                <div class="emergency-number rounded-3">
+                  <div
+                    id="emergencyEmptyMessage"
+                    class="text-center py-5 text-secondary"
+                  >
+                    No emergency contacts
+                  </div>
+                  <div class="row g-3 number w-100" id="emergencyNumber">
+                    <!-- <div class="col-12 col-md-6 col-lg-12">
+                      <div
+                        class="inner emergecy-inner rounded-4 d-flex align-items-center justify-content-between"
+                      >
+                        <a class="p-2 d-flex gap-3 align-items-center">
+                          <div
+                            class="letters rounded-3 fw-semibold text-white position-relative d-flex align-items-center justify-content-center rounded-3"
+                          >
+                            MS
+                          </div>
+                          <div class="mt-1">
+                            <h3 class="m-0 fs-11 fw-bold">Marina Samy</h3>
+                            <div
+                              class="m-0 color-g fs-10 fw-medium color-g d-flex align-items-center gap-2"
+                            >
+                              <div
+                                class="phone rounded-3 d-flex align-items-center justify-content-center"
+                              >
+                                01206598218
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                        <div
+                          class="emergecy-call rounded-3 action ms-auto me-2"
+                        >
+                          <a>
+                            <i class="fa-solid fa-phone fs-12"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Add New Contact
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="image-upload text-center">
+                <div
+                  class="avatar d-flex justify-content-center align-items-center"
+                >
+                  <i class="fa-solid fa-user fs-1 text-white"></i>
+                </div>
+
+                <input type="file" id="contactImage" accept="image/*" hidden />
+
+                <label for="contactImage" class="btn btn-light mt-3">
+                  <i class="fa-solid fa-camera"></i>
+                  Change Photo
+                </label>
+              </div>
+              <div class="mb-0">
+                <label for="contactName" class="form-label">Full Name </label>
+                <input
+                  type="text"
+                  class="form-control required"
+                  id="contactName"
+                  placeholder="Enter Full Name"
+                  oninput="validateContactNume()"
+                />
+                <p class="error invisible mt-1 mb-2">
+                  Name should contain only letters and spaces (2-50 characters)
+                </p>
+              </div>
+              <div class="mb-0">
+                <label for="contactPhone" class="form-label"
+                  >Phone Number
+                </label>
+                <input
+                  type="tel"
+                  class="form-control required"
+                  id="contactPhone"
+                  placeholder="e.g., 01012345678"
+                  oninput="validateContactphone()"
+                />
+                <p class="error invisible mt-1 mb-2">
+                  Please enter a valid Egyptian phone number
+                </p>
+              </div>
+              <div class="mb-0">
+                <label for="contactEmail" class="form-label"
+                  >Email Address</label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  id="contactEmail"
+                  placeholder="name@example.com"
+                  oninput="validateContactEmail()"
+                />
+                <p class="error invisible mt-1 mb-2">
+                  Please enter a valid email address
+                </p>
+              </div>
+              <div class="mb-2">
+                <label for="contactAddress" class="form-label">Address</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="contactAddress"
+                  placeholder="Enter address"
+                />
+              </div>
+              <div class="mb-2">
+                <label for="contactGroup" class="form-label">Group</label>
+                <select
+                  class="form-select"
+                  aria-label="Contact Group"
+                  id="contactGroup"
+                >
+                  <option selected disabled>Select a Group</option>
+                  <option value="Family">Family</option>
+                  <option value="Friends">Friends</option>
+                  <option value="Work">Work</option>
+                  <option value="School">School</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="mb-2">
+                <label for="contactNotes" class="form-label">Notes</label>
+
+                <textarea
+                  class="form-control"
+                  id="contactNotes"
+                  rows="3"
+                  placeholder="Add notes about this contact"
+                ></textarea>
+              </div>
+              <div class="mb-2 form-check form-check-inline">
+                <input
+                  type="checkbox"
+                  value="favorite"
+                  name="opinion"
+                  class="form-check-input"
+                  id="contactFavorite"
+                />
+                <label for="contactFavorite" class="form-check-label">
+                  <i class="fa-solid fa-star text-warning me-1"></i>Favorite
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  type="checkbox"
+                  value="emergency"
+                  name="opinion"
+                  class="form-check-input"
+                  id="contactEmergency"
+                />
+                <label for="contactEmergency" class="form-check-label">
+                  <i class="fa-solid fa-heart-pulse text-danger me-1"></i
+                  >Emergency</label
+                >
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer d-flex gap-2">
+            <button
+              type="button"
+              class="btn save w-100 text-white fw-semibold rounded-4"
+              onclick="saveContact()"
+            >
+              Save contact
+            </button>
+            <button
+              type="button"
+              class="btn cancel w-100 rounded-4"
+              data-bs-dismiss="modal"
+            >
+              cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ^ ### JS file { bootstrap }-->
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- ^ ### Main JS File -->
+    <script src="./js/index.js"></script>
+  </body>
+</html>

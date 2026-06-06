@@ -1,0 +1,364 @@
+:root {
+  --main-color: #7f22fe;
+  --color-gray: #6a7282;
+}
+
+/* & ### Utilities */
+.color-v {
+  color: var(--main-color);
+}
+.color-g {
+  color: var(--color-gray);
+}
+.fs-24 {
+  font-size: 24px;
+}
+.fs-16 {
+  font-size: 16px;
+}
+.fs-12 {
+  font-size: 12px;
+}
+.fs-10 {
+  font-size: 10px;
+}
+.fs-11 {
+  font-size: 11px;
+}
+.fs-20 {
+  font-size: 20px;
+}
+.fs-14 {
+  font-size: 14px;
+}
+.fs-30 {
+  font-size: 30px;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+nav .fa-address-book {
+  width: 44px;
+  height: 44px;
+  background-image: linear-gradient(to bottom right, #7f22fe, #4f39f6);
+  box-shadow: 0px 5px 10px #bfabe4;
+}
+.main-content {
+  background-color: rgb(248, 250, 252);
+}
+.row-1 {
+  padding-top: 85px;
+}
+
+nav {
+  height: 80px;
+  border-bottom: 1px solid #f6f3f4;
+}
+img {
+  width: 36px;
+  height: 36px;
+}
+.add {
+  padding: 10px;
+  background-image: linear-gradient(to right, var(--main-color), #4f39f6);
+  cursor: pointer;
+  transition: transform, 300ms;
+}
+.add:hover {
+  transform: translateY(-5px);
+  box-shadow: -1px 7px 15px 0px #c3aeebad;
+}
+
+.fa-gear:hover,
+.fa-bell:hover {
+  color: #364153;
+}
+.card-total,
+.card-fav,
+.card-emergency {
+  border: 1px solid #f6f3f4;
+  box-shadow: 0px 0px 2px 0px rgb(0 0 0 / 22%);
+  transition: box-shadow, 300ms;
+}
+
+.card-total:hover,
+.card-fav:hover,
+.card-emergency:hover {
+  box-shadow: -1px 0px 8px 0px #979daa;
+}
+.users,
+.star,
+.heart {
+  width: 44px;
+  height: 44px;
+}
+.users {
+  background-image: linear-gradient(to bottom right, #2b7fff, #155dfc);
+}
+.star {
+  background-image: linear-gradient(to bottom right, #ffb900, #ff6900);
+}
+.heart {
+  background-image: linear-gradient(to bottom right, #ff2056, #e7000b);
+}
+
+.form-control:focus,
+.form-select:focus,
+textarea:focus {
+  box-shadow: 1px 1px 5px 0px #bfaae7;
+  border-color: #8e51ff;
+}
+.search {
+  padding: 14px 16px 14px 44px;
+  border-radius: 12px;
+}
+.search::placeholder {
+  color: #99a1af;
+  font-size: 14px;
+}
+.fa-magnifying-glass {
+  top: 35%;
+  left: 10px;
+  color: #99a1af;
+}
+.contact-card {
+  border: 1px solid #f6f3f4;
+  box-shadow: 0px 0px 2px 0px rgb(0 0 0 / 22%);
+}
+.card-header {
+  padding: 16px 16px 12px;
+}
+.letters {
+  background-image: linear-gradient(to bottom right, #ff2056, #e60076);
+  color: #fff;
+  font-size: 18px;
+}
+.inner .letters {
+  width: 44px;
+  height: 44px;
+}
+.card-header .letters {
+  width: 56px;
+  height: 56px;
+}
+.favorite {
+  background-color: #ffb900;
+  width: 20px;
+  height: 20px;
+  top: -3px;
+  right: -3px;
+}
+.heart-pulse {
+  background-color: #ff2056;
+  width: 20px;
+  height: 20px;
+  bottom: -3px;
+  right: -3px;
+}
+.card-header .phone {
+  width: 24px;
+  height: 24px;
+  background-color: #dbeafe;
+}
+.card-header .fa-phone {
+  color: #2b7fff;
+}
+.card-header .email {
+  width: 28px;
+  height: 28px;
+  background-color: #ede9fe;
+}
+.card-header .fa-envelope {
+  color: #8e51ff;
+}
+.card-header .email p,
+.card-header .location p {
+  color: #4a5565;
+}
+.card-header .location {
+  width: 28px;
+  height: 28px;
+  background-color: #d0fae5;
+}
+.card-header .fa-location-dot {
+  color: #00bc7d;
+}
+.badge {
+  background-color: #f6f3f4;
+  color: #364153;
+}
+.Emergency {
+  background-color: #fff1f2;
+  color: #ec003f;
+}
+.card-actions {
+  padding-block: 10px;
+  background-color: #fbf9fa;
+  border-top: 1px solid #f6f3f4;
+}
+.action {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.star-action:focus {
+  background-color: #fffbeb;
+  color: #ffb900;
+}
+.phone-action {
+  color: #009966;
+  background-color: #ecfdf5;
+}
+.emergecy-call {
+  color: #ec003f;
+  background-color: #ffe4e6;
+}
+.card-actions .right .phone-action:hover {
+  background-color: #d0fae5;
+}
+.card-actions .right .envelope-action {
+  background-color: #f5f3ff;
+  color: #7f22fe;
+}
+.card-actions .right .envelope-action:hover {
+  background-color: #ede9fe;
+  color: #ffb900;
+}
+.card-actions .left .star-action,
+.card-actions .left .heart-action {
+  background-color: #fbf9fa;
+  color: #99a1af;
+}
+.card-actions .left .star-action:hover {
+  color: #ffb900;
+  background-color: #f6f3f4;
+}
+.card-actions .left .heart-action:hover {
+  color: #ff2056;
+  background-color: #f6f3f4;
+}
+.card-actions .left .edit-action,
+.card-actions .left .delete-action {
+  background-color: #fbf9fa;
+  color: var(--color-gray);
+}
+.card-actions .left .edit-action:hover {
+  color: #4f39f6;
+  background-color: #eef2ff;
+}
+.card-actions .left .delete-action:hover {
+  color: #ec003f;
+  background-color: #fff1f2;
+}
+.card-actions button {
+  outline: none;
+  border: none;
+}
+.favorites-mobile,
+.emergency-mobile {
+  border: 1px solid #f6f3f4;
+  box-shadow: 0px 0px 2px 0px rgb(0 0 0 / 22%);
+  margin-bottom: 20px;
+}
+.favorites-mobile .fav,
+.emergency-mobile .emergecy-m {
+  padding-block: 14px;
+  border-bottom: 1px solid #f6f3f4;
+}
+.favorites-mobile .fav {
+  background-image: linear-gradient(to right, #fffbeb, #fff7ed);
+}
+.emergency-mobile .emergecy-m {
+  background-image: linear-gradient(to right, #fff1f2, #fef2f2);
+}
+.fav-number,
+.emergency-number {
+  padding: 12px;
+}
+.inner {
+  border: 1px solid #f6f3f4;
+}
+.fav-inner:hover {
+  background-color: #fffbeb;
+  border-color: #fee685;
+}
+.emergecy-inner:hover {
+  background-color: #fff1f2;
+  border-color: #ffccd3;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.form-check-input:checked {
+  background-color: #ec003f;
+  border-color: none;
+  box-shadow: none;
+}
+.form-check-input {
+  border-color: #d1d5dc;
+  width: 20px;
+  height: 20px;
+}
+.form-control,
+.form-select {
+  border-color: #ebe6e7;
+  background-color: #fbf9fa;
+}
+.form-check-label {
+  color: #4a5565;
+}
+.form-check-label:hover {
+  color: #101828;
+}
+.save {
+  background-image: linear-gradient(to right, #7f22fe, #4f39f6);
+  padding: 12px 20px;
+}
+.cancel {
+  background-color: #f6f3f4;
+  color: #364153;
+  padding: 12px 20px;
+}
+.cancel:hover {
+  background-color: #ebe6e7;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  margin: auto;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(135deg, #4f46e5, #2563eb);
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.emergecy-call,
+.fav-inner .phone-action {
+  width: 24px;
+  height: 24px;
+}
+.click {
+  color: #99a1af;
+}
+.address-book {
+  width: 80px;
+  height: 80px;
+  background-color: #f6f3f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.error {
+  font-size: 12px;
+  color: red;
+}
