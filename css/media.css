@@ -10,6 +10,11 @@
     width: 56px;
     height: 56px;
   }
+  .card-total,
+  .card-fav,
+  .card-emergency {
+    padding: 16px;
+  }
 }
 
 @media screen and (min-width: 916px) {
